@@ -72,7 +72,7 @@ void setup() {
   //imagenes
   fondoInicio = loadImage("imagenes/fondoInicio.png");
   tituloInicio = loadImage("imagenes/tituloAentro.png");
-  tituloPerder = loadImage("imagenes/tituloPerder.png");
+  tituloPerder = loadImage("imagenes/tituloPerdiste.png");
   instrucciones = loadImage("imagenes/instrucciones.png");
   botonInicio = loadImage("imagenes/botonInicio.png");
   botonJugar = loadImage("imagenes/botonJugar.png");
@@ -212,14 +212,13 @@ void draw() {
   }
   if (estado==3) {
 
-    for (int i=0; i<4; i++) {
-      background(255);
+    //text("perdiste", width/2, height/2);
+        for (int i=0; i<4; i++) {
+    image(fondoInicio, 0, 0);
       text(textosPerder[frase], width/2, height/2);
     }
-
-    //text("perdiste", width/2, height/2);
-    image(fondoInicio, 0, 0);
-    image(botonReintentar, width/2-117.5, height/4*3-20);
+    image(tituloPerder,width/2-245.5, 70);
+    image(botonReintentar, width/2-150.5, height/4*3-20);
     botonGanar("Menu", 1, 150, 150, 200, 25);
   }
 
