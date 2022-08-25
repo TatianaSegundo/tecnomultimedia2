@@ -24,6 +24,7 @@ int progreso;
 int frase = round(random(0, 4)); //estado perder
 String [] textosPerder; //estado perder
 boolean botonPresionado;
+PImage fondoInicio, tituloInicio, tituloPerder, instrucciones, botonInicio, botonJugar, botonReintentar, bailarines, radio;
 String [] nombre={"fragmento02", "fragmento03", "fragmento04", "fragmento05", "fragmento06", 
   "fragmento07", "fragmento08", "fragmento09", "fragmento010", "fragmento011", "fragmento012", "fragmento013", 
   "fragmento014", "fragmento015", "fragmento016", "fragmento017", "fragmento018", 
@@ -64,9 +65,22 @@ void setup() {
   for (int i=0; i<30; i++) {
     fragmento [i]= new SoundFile(this, nombre[i]+".wav");
   }
+
   amorSalvaje.loop();
   amorSalvaje.amp(0.1);
   ganar.amp(0.2);
+  //imagenes
+  fondoInicio = loadImage("imagenes/fondoInicio.png");
+  tituloInicio = loadImage("imagenes/tituloAentro.png");
+  tituloPerder = loadImage("imagenes/tituloPerder.png");
+  instrucciones = loadImage("imagenes/instrucciones.png");
+  botonInicio = loadImage("imagenes/botonInicio.png");
+  botonJugar = loadImage("imagenes/botonJugar.png");
+  botonReintentar = loadImage("imagenes/botonReintentar.png");
+  bailarines = loadImage("imagenes/bailarines.png");
+  radio = loadImage("imagenes/radio.png");
+  //resize bailarines
+  bailarines.resize(400, 450);
 
   size(1800, 600);
   //textos
@@ -103,7 +117,11 @@ void setup() {
 void draw() {
   if (estado==1) {    
     perdiste.stop();
-    background(255);
+    //background(255);
+    background(fondoInicio);
+    image(botonJugar, width/2-117.5, height/4*3-20);
+    image(tituloInicio, width/2-265, 70);
+    image(instrucciones, width/2-191, height/2-55.5);
     ganar.stop();
     botonCustom("play", 2, 600, 400, 40, 40);
     opo=3;
@@ -114,7 +132,8 @@ void draw() {
     salen=150;
     perdiste.stop();
     fragmento[numeroDeFragmento].amp(0.4);
-    meta.setPosition(1200, 300);
+    meta.setNoStroke();
+    meta.setPosition(1200, 300); //rectangulo bailarines
     p.oportunidades(error);
     c++;
     c2++;
@@ -130,6 +149,7 @@ void draw() {
     mundo.step();
     //dibuja el mundo de fisica
     mundo.draw();
+    image(bailarines, 1100, 100);
 
     if (c>=salen) {
       p.notas(mundo);
@@ -174,7 +194,9 @@ void draw() {
      mundo.setGravity(100, 100);
      }*/
     p.dibujar();
+    image(radio, 30, 10);
     rect(500, 10, progreso*10, 10);
+
     println(c, c2, c3, salen, a, numeroDeFragmento, tiempo, estado);
     if (opo<=0) {
       estado=3;
@@ -190,17 +212,21 @@ void draw() {
   }
   if (estado==3) {
 
-    for (int i=0; i<4; i++) {
-      background(255);
+    //text("perdiste", width/2, height/2);
+        for (int i=0; i<4; i++) {
+    image(fondoInicio, 0, 0);
       text(textosPerder[frase], width/2, height/2);
     }
-    text("perdiste", width/2, height/2);
+
+    image(botonReintentar, width/2-117.5, height/4*3-20);
     botonGanar("Menu", 1, 150, 150, 200, 25);
   }
 
   if (estado==4) {
     background(255);
     text("ganaste", width/2, height/2);
+    image(fondoInicio, 0, 0);
+    image(botonInicio, width/2-117.5, height/4*3-20);
     botonGanar("Menu", 1, 150, 150, 200, 25);
     amorSalvaje.stop();
     error.stop();
