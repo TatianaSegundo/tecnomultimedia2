@@ -204,20 +204,21 @@ void draw() {
       fragmento[numeroDeFragmento].stop();
       perdiste.play();
     }
-    if (progreso>=4) {
+    if (progreso>=6) {
       estado=4;
       fragmento[numeroDeFragmento].stop();
       ganar.play();
       amorSalvaje.stop();
     }
   }
-  if (estado==3) {
+   if (estado==3) {
 
     //text("perdiste", width/2, height/2);
     for (int i=0; i<4; i++) {
       image(fondoInicio, 0, 0);
       text(textosPerder[frase], width/2, height/2);
     }
+    amorSalvaje.stop();
     image(tituloPerder, width/2-245.5, 70);
     image(botonReintentar, width/2-150.5, height/4*3-20);
     botonGanar("Menu", 1, round(width/2-150.5), round(height/4*3-20), 301, 85);
@@ -228,7 +229,8 @@ void draw() {
     image(fondoInicio, 0, 0);
     image(tituloGanar, width/2-245, 70);
     image(botonInicio, width/2-117.5, height/4*3-20);
-    botonGanar("Menu", 1, round(width/2-117.5), round(height/4*3-20), 213, 83);
+    //botonGanar("Menu", 1, round(width/2-117.5), round(height/4*3-20), 213, 83);
+    botonGanar("Menu", 1, round(width/2-110), round(height/4*3-40), 213, 83);
     amorSalvaje.stop();
     error.stop();
     bien.stop();
@@ -294,7 +296,7 @@ void botonGanar(String textoB, int queEstado, int x, int y, int posx, int posy) 
       //fill(230, 133, 232);
     }
   } else {
-    fill(100, 200, 200);
+    //fill(100, 200, 200);
     //botonPresionado=false;
   }
   //rect(x, y, posx, posy, 45);
