@@ -24,7 +24,7 @@ int progreso;
 int frase = round(random(0, 4)); //estado perder
 String [] textosPerder; //estado perder
 boolean botonPresionado;
-PImage fondoInicio, tituloInicio, tituloPerder, instrucciones, botonInicio, botonJugar, botonReintentar, bailarines, radio;
+PImage fondoInicio, tituloInicio, tituloPerder, tituloGanar, instrucciones, botonInicio, botonJugar, botonReintentar, bailarines, radio;
 String [] nombre={"fragmento02", "fragmento03", "fragmento04", "fragmento05", "fragmento06", 
   "fragmento07", "fragmento08", "fragmento09", "fragmento010", "fragmento011", "fragmento012", "fragmento013", 
   "fragmento014", "fragmento015", "fragmento016", "fragmento017", "fragmento018", 
@@ -72,7 +72,8 @@ void setup() {
   //imagenes
   fondoInicio = loadImage("imagenes/fondoInicio.png");
   tituloInicio = loadImage("imagenes/tituloAentro.png");
-  tituloPerder = loadImage("imagenes/tituloPerder.png");
+  tituloPerder = loadImage("imagenes/tituloPerdiste.png");
+  tituloGanar = loadImage("imagenes/tituloGanaste.png");
   instrucciones = loadImage("imagenes/instrucciones.png");
   botonInicio = loadImage("imagenes/botonInicio.png");
   botonJugar = loadImage("imagenes/botonJugar.png");
@@ -123,7 +124,7 @@ void draw() {
     image(tituloInicio, width/2-265, 70);
     image(instrucciones, width/2-191, height/2-55.5);
     ganar.stop();
-    botonCustom("play", 2, 600, 400, 40, 40);
+    botonCustom("play", 2, round(width/2-117.5), round(height/4*3-20), 235, 83);
     opo=3;
     progreso=0;
     salen=1500;
@@ -203,7 +204,7 @@ void draw() {
       fragmento[numeroDeFragmento].stop();
       perdiste.play();
     }
-    if (progreso>=30) {
+    if (progreso>=4) {
       estado=4;
       fragmento[numeroDeFragmento].stop();
       ganar.play();
@@ -213,21 +214,21 @@ void draw() {
   if (estado==3) {
 
     //text("perdiste", width/2, height/2);
-        for (int i=0; i<4; i++) {
-    image(fondoInicio, 0, 0);
+    for (int i=0; i<4; i++) {
+      image(fondoInicio, 0, 0);
       text(textosPerder[frase], width/2, height/2);
     }
-
-    image(botonReintentar, width/2-117.5, height/4*3-20);
-    botonGanar("Menu", 1, 150, 150, 200, 25);
+    image(tituloPerder, width/2-245.5, 70);
+    image(botonReintentar, width/2-150.5, height/4*3-20);
+    botonGanar("Menu", 1, round(width/2-150.5), round(height/4*3-20), 301, 85);
   }
 
   if (estado==4) {
     background(255);
-    text("ganaste", width/2, height/2);
     image(fondoInicio, 0, 0);
+    image(tituloGanar, width/2-245, 70);
     image(botonInicio, width/2-117.5, height/4*3-20);
-    botonGanar("Menu", 1, 150, 150, 200, 25);
+    botonGanar("Menu", 1, round(width/2-117.5), round(height/4*3-20), 213, 83);
     amorSalvaje.stop();
     error.stop();
     bien.stop();
@@ -266,40 +267,40 @@ void contactStarted(FContact contacto) {
 void botonCustom(String textoB, int queEstado, int x, int y, int posx, int posy) {
   pushStyle();
   if (mouseX > x && mouseX < posx +x && mouseY > y && mouseY < posy + y ) {
-    fill(245, 190, 247);
+    //fill(245, 190, 247);
     if (mousePressed==true) {
       botonPresionado=true;
       estado=queEstado;
-      fill(230, 133, 232);
+      //fill(230, 133, 232);
     }
   } else {
-    fill(100, 200, 200);
+    //fill(100, 200, 200);
     //botonPresionado=false;
   }
-  rect(x, y, posx, posy, 45);
+  //rect(x, y, posx, posy, 45);
   fill(255, 0, 0);
 
-  textSize(15);
-  text(textoB, x+posx/2, y+posy/2);
+  //textSize(15);
+  //text(textoB, x+posx/2, y+posy/2);
   popStyle();
 }
 void botonGanar(String textoB, int queEstado, int x, int y, int posx, int posy) {
   pushStyle();
   if (mouseX > x && mouseX < posx +x && mouseY > y && mouseY < posy + y ) {
-    fill(245, 190, 247);
+    //fill(245, 190, 247);
     if (mousePressed==true) {
       amorSalvaje.loop();
       estado=queEstado;
-      fill(230, 133, 232);
+      //fill(230, 133, 232);
     }
   } else {
     fill(100, 200, 200);
     //botonPresionado=false;
   }
-  rect(x, y, posx, posy, 45);
-  fill(255, 0, 0);
+  //rect(x, y, posx, posy, 45);
+  //fill(255, 0, 0);
 
-  textSize(15);
-  text(textoB, x+posx/2, y+posy/2);
+  // textSize(15);
+  // text(textoB, x+posx/2, y+posy/2);
   popStyle();
 }
