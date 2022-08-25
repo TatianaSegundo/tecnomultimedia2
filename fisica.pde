@@ -189,12 +189,12 @@ void draw() {
     }
   }
   if (estado==3) {
-    background(255);
+
     text("perdiste", width/2, height/2);
     botonGanar("Menu", 1, 150, 150, 200, 25);
 
     for (int i=0; i<4; i++) {
-
+      background(255);
       text(textosPerder[frase], width/2, height/2);
     }
   }
