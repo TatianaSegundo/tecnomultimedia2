@@ -243,6 +243,8 @@ void draw() {
   }
   if (estado==3) {
     salenNotas=false;
+    push();
+    textAlign(CENTER);
     //text("perdiste", width/2, height/2);
     for (int i=0; i<4; i++) {
       image(fondoInicio, 0, 0);
@@ -252,6 +254,7 @@ void draw() {
     image(botonReintentar, width/2-150.5, height/4*3-20);
     botonGanar("Menu", 1, round(width/2-150.5), round(height/4*3-20), 301, 85);
     contador++;
+    pop();
   }
 
   if (estado==4) {
