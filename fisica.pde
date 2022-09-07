@@ -245,6 +245,7 @@ void draw() {
     salenNotas=false;
     push();
     textAlign(CENTER);
+    textSize(30);
     //text("perdiste", width/2, height/2);
     for (int i=0; i<4; i++) {
       image(fondoInicio, 0, 0);
